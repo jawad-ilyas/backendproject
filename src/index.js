@@ -9,6 +9,15 @@ dotenv.config({
     path: "./env"
 })
 connectDB()
+    .then(() => {
+        app.listen(process.env.PORT || 8000, () => {
+            console.log(`server is running on the this port ${process.env.PORT}`)
+        })
+        app.on("error", (err) => {
+            console.log(err)
+        })
+    })
+    .catch((err) => console.log("Mongo db collection error", err))
 
 
 
